@@ -14,6 +14,8 @@ class TagLayout @JvmOverloads constructor(
     private val childRect = ArrayList<Rect>()
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        childRect.clear()
+
         var widthUse = 0
         var heightUse = 0
         val widthSize = MeasureSpec.getSize(widthMeasureSpec)
