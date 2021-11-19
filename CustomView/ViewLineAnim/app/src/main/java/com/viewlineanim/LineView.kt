@@ -56,8 +56,12 @@ class LineView @JvmOverloads constructor(
         anim.start()
     }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        stop()
+    }
 
-    fun stop() {
+    private fun stop() {
         if (::anim.isInitialized) {
             anim.cancel()
         }
