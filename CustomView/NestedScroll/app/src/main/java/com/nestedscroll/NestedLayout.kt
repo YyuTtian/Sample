@@ -79,6 +79,12 @@ class NestedLayout @JvmOverloads constructor(
         println("$TAG onNestedPreScroll dx=$dx dy=$dy consumed[0]=${consumed[0]} consumed[1]=${consumed[1]} type=$type scrollY=$scrollY consumeSize=$consumeSize")
     }
 
+    override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
+        println("$TAG onNestedFling")
+        // 处理惯性滑动
+        return true
+    }
+
     override fun scrollTo(x: Int, y: Int) {
         var lastY = y
         if (lastY < 0) {
@@ -89,6 +95,7 @@ class NestedLayout @JvmOverloads constructor(
         }
         super.scrollTo(x, lastY)
     }
+
 
     /**
      * NestedScrollingParent配合处理嵌套滑动回调此方法
