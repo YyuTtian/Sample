@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private val headHeight = dp2px(50)
     private val lineHeight = dp2px(2)
+    private val groupLeft = dp2px(20).toFloat()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                                 canvas.drawRect(left.toFloat(), (child.top - headHeight).toFloat(), right.toFloat(), child.top.toFloat(), headPaint)
                                 txtPaint.getTextBounds(groupName, 0, groupName.length - 1, txtRect)
                                 val y = child.top - headHeight / 2 + txtRect.height() / 2
-                                canvas.drawText(groupName, 50f, y.toFloat(), txtPaint)
+                                canvas.drawText(groupName, groupLeft, y.toFloat(), txtPaint)
                             } else {
                                 canvas.drawRect(left.toFloat(), (child.top - lineHeight).toFloat(), right.toFloat(), child.top.toFloat(), headPaint)
                             }
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                         val groupName = adapter.getGroupName(firstVisiblePosition)
                         txtPaint.getTextBounds(groupName, 0, groupName.length - 1, txtRect)
                         val y = top + bottom - headHeight / 2 + txtRect.height() / 2
-                        canvas.drawText(groupName, 50f, y.toFloat(), txtPaint)
+                        canvas.drawText(groupName, groupLeft, y.toFloat(), txtPaint)
 
                     } else {
                         canvas.drawRect(left.toFloat(), top.toFloat(), right.toFloat(), (top + headHeight).toFloat(), headPaint)
@@ -110,7 +111,7 @@ class MainActivity : AppCompatActivity() {
                         val groupName = adapter.getGroupName(firstVisiblePosition)
                         txtPaint.getTextBounds(groupName, 0, groupName.length - 1, txtRect)
                         val y = top + headHeight / 2 + txtRect.height() / 2
-                        canvas.drawText(groupName, 50f, y.toFloat(), txtPaint)
+                        canvas.drawText(groupName, groupLeft, y.toFloat(), txtPaint)
                     }
                 }
             }
