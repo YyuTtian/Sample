@@ -8,7 +8,8 @@ dependencies {
     implementation localGroovy()
 
     implementation "com.android.tools.build:gradle:3.2.0"
-    implementation "org.ow2.asm:asm:8.0"
+    implementation "org.ow2.asm:asm:9.2"
+    implementation "org.ow2.asm:asm-commons:9.2"
     implementation "commons-io:commons-io:2.6"
 }
 

@@ -8,17 +8,13 @@ import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.ClassWriter
 import org.objectweb.asm.MethodVisitor
-import org.objectweb.asm.Opcodes
+import org.objectweb.asm.commons.AdviceAdapter
 
 import java.util.jar.JarEntry
 import java.util.jar.JarFile
 import java.util.jar.JarOutputStream
 
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC
-import static org.objectweb.asm.Opcodes.ACC_STATIC
-import static org.objectweb.asm.Opcodes.GETSTATIC
-import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL
-import static org.objectweb.asm.Opcodes.RETURN
+import static org.objectweb.asm.Opcodes.*
 
 class ClassTransform extends Transform {
 
@@ -165,13 +161,36 @@ class ClassTransform extends Transform {
     private byte[] modify(InputStream inputStream) {
         ClassReader classReader = new ClassReader(inputStream)
         ClassWriter classWriter = new ClassWriter(0)
-        ClassVisitor classVisitor = new ClassVisitor(Opcodes.ASM8, classWriter) {
+        ClassVisitor classVisitor = new ClassVisitor(ASM9, classWriter) {
+
+            @Override
+            MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
+
+                if (name == "<init>" || name == "<clinit>") {
+                    return super.visitMethod(access, name, descriptor, signature, exceptions)
+                }
+
+                MethodVisitor methodVisitor = super.visitMethod(access, name, descriptor, signature, exceptions)
+                return new AdviceAdapter(ASM9, methodVisitor, access, name, descriptor) {
+                    @Override
+                    protected void onMethodEnter() {
+                        super.onMethodEnter()
+                        // 方法头部插入代码
+                    }
+
+                    @Override
+                    protected void onMethodExit(int opcode) {
+                        super.onMethodExit(opcode)
+                        // 方法尾部插入代码
+                    }
+                }
+            }
 
             @Override
             void visitEnd() {
 
                 Random random = new Random()
-                int iMax = random.nextInt(200) + 100
+                int iMax = random.nextInt(50) + 50
                 int jMax = random.nextInt(50) + 50
 
                 for (int i = 0; i < iMax; i++) {
@@ -186,7 +205,7 @@ class ClassTransform extends Transform {
                     mv.visitMaxs(2, 0)
                     mv.visitEnd()
                 }
-                super.visitEnd();
+                super.visitEnd()
             }
         }
         classReader.accept(classVisitor, 0)
