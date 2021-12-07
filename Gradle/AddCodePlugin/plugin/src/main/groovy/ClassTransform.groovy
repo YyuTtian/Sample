@@ -160,7 +160,7 @@ class ClassTransform extends Transform {
 
     private byte[] modify(InputStream inputStream) {
         ClassReader classReader = new ClassReader(inputStream)
-        ClassWriter classWriter = new ClassWriter(0)
+        ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS)
         ClassVisitor classVisitor = new ClassVisitor(ASM9, classWriter) {
 
             @Override
@@ -208,7 +208,7 @@ class ClassTransform extends Transform {
                 super.visitEnd()
             }
         }
-        classReader.accept(classVisitor, 0)
+        classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
 
         return classWriter.toByteArray()
     }
