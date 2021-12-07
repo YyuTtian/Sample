@@ -147,6 +147,10 @@ class ClassTransform extends Transform {
             return false
         }
 
+        if (!srcFilePath.endsWith(".class")) {
+            return false
+        }
+
         String filePath = srcFilePath.replace("\\", ".").replace("/", ".")
         if (filePath.contains("R\$") || filePath.contains("R.class") || filePath.contains("BuildConfig.class")) {
             return false
@@ -159,6 +163,9 @@ class ClassTransform extends Transform {
     }
 
     private byte[] modify(InputStream inputStream) {
+
+        Random random = new Random()
+
         ClassReader classReader = new ClassReader(inputStream)
         ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS)
         ClassVisitor classVisitor = new ClassVisitor(ASM9, classWriter) {
@@ -176,12 +183,24 @@ class ClassTransform extends Transform {
                     protected void onMethodEnter() {
                         super.onMethodEnter()
                         // 方法头部插入代码
+                        int iMax = random.nextInt(10) + 3
+                        for (int i = 0; i < iMax; i++) {
+                            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;")
+                            mv.visitLdcInsn(RandomStr.getStr())
+                            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false)
+                        }
                     }
 
                     @Override
                     protected void onMethodExit(int opcode) {
                         super.onMethodExit(opcode)
                         // 方法尾部插入代码
+                        int iMax = random.nextInt(10) + 3
+                        for (int i = 0; i < iMax; i++) {
+                            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;")
+                            mv.visitLdcInsn(RandomStr.getStr())
+                            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false)
+                        }
                     }
                 }
             }
@@ -189,7 +208,6 @@ class ClassTransform extends Transform {
             @Override
             void visitEnd() {
 
-                Random random = new Random()
                 int iMax = random.nextInt(50) + 50
                 int jMax = random.nextInt(50) + 50
 
