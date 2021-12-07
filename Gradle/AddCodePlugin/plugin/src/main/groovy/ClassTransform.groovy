@@ -165,7 +165,7 @@ class ClassTransform extends Transform {
     private byte[] modify(InputStream inputStream) {
         ClassReader classReader = new ClassReader(inputStream)
         ClassWriter classWriter = new ClassWriter(0)
-        ClassVisitor classVisitor = new ClassVisitor(Opcodes.ASM5, classWriter) {
+        ClassVisitor classVisitor = new ClassVisitor(Opcodes.ASM8, classWriter) {
 
             @Override
             void visitEnd() {
