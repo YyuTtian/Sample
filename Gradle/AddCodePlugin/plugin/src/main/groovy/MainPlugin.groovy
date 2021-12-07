@@ -15,7 +15,7 @@ class MainPlugin implements Plugin<Project> {
 //
 //            Params params = project.extensions.findByType(Params.class)
 //            if (params != null && params.enable && apkVariant.buildType.getName() == "release") {
-//                L.i("registerTransform")
+//
 //
 //            }
 //        }

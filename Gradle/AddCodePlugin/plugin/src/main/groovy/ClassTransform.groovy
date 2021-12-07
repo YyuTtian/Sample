@@ -87,7 +87,6 @@ class ClassTransform extends Transform {
                 }
 
                 def dest = outputProvider.getContentLocation(md5 + jarName, jarInputs.contentTypes, jarInputs.scopes, Format.JAR)
-                L.i(tag + " FileUtils.copyFile src=" + srcFile.absolutePath + " dst=" + dest.absolutePath)
                 FileUtils.copyFile(srcFile, dest)
             }
         }
@@ -102,7 +101,6 @@ class ClassTransform extends Transform {
                 if (file.isFile() && canModify(filePath)) {
                     def inputStream = new FileInputStream(file)
                     def bytes = modify(inputStream)
-                    L.i(tag + "modify write to " + file.absolutePath)
                     FileUtils.writeByteArrayToFile(new File(file.absolutePath), bytes)
                 }
             }
@@ -128,16 +126,11 @@ class ClassTransform extends Transform {
 
             def inputStream = inputJarFile.getInputStream(inputJarEntry)
             if (canModify(inputJarEntryName)) {
-                def bytes = modify(inputStream)
-                inputStream.close()
-
-                jarOutputStream.write(bytes)
-                jarOutputStream.flush()
-
+                jarOutputStream.write(modify(inputStream))
             } else {
                 jarOutputStream.write(IOUtils.toByteArray(inputStream))
-                inputStream.close()
             }
+            inputStream.close()
         }
 
         inputJarFile.close()
@@ -158,13 +151,11 @@ class ClassTransform extends Transform {
             return false
         }
 
-        L.i(tag + "canModify srcFilePath=" + srcFilePath)
         String filePath = srcFilePath.replace("\\", ".").replace("/", ".")
         if (filePath.contains("R\$") || filePath.contains("R.class") || filePath.contains("BuildConfig.class")) {
             return false
         } else {
             if (filePath.contains(pkg)) {
-                L.i("modify=" + filePath)
                 return true
             }
             return false
