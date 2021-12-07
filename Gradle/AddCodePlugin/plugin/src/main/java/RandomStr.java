@@ -11,7 +11,7 @@ public class RandomStr {
         int strCount = random.nextInt(20) + 20;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < strCount; i++) {
-            sb.append(random.nextInt(str.length));
+            sb.append(str[random.nextInt(str.length)]);
         }
 
         return sb.toString();
