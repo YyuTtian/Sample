@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.objectdetect.camera;
+package com.camera;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
-
 
 @SuppressWarnings("deprecation")
 class Camera1 extends CameraViewImpl {
@@ -147,41 +146,6 @@ class Camera1 extends CameraViewImpl {
     int getFacing() {
         return mFacing;
     }
-
-//    @Override
-//    Set<AspectRatio> getSupportedAspectRatios() {
-//        SizeMap idealAspectRatios = mPreviewSizes;
-//        for (AspectRatio aspectRatio : idealAspectRatios.ratios()) {
-//            if (mPictureSizes.sizes(aspectRatio) == null) {
-//                idealAspectRatios.remove(aspectRatio);
-//            }
-//        }
-//        return idealAspectRatios.ratios();
-//    }
-
-//    @Override
-//    boolean setAspectRatio(AspectRatio ratio) {
-//        if (mAspectRatio == null || !isCameraOpened()) {
-//            // Handle this later when camera is opened
-//            mAspectRatio = ratio;
-//            return true;
-//        } else if (!mAspectRatio.equals(ratio)) {
-//            final Set<Size> sizes = mPreviewSizes.sizes(ratio);
-//            if (sizes == null) {
-//                throw new UnsupportedOperationException(ratio + " is not supported");
-//            } else {
-//                mAspectRatio = ratio;
-//                adjustCameraParameters();
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    AspectRatio getAspectRatio() {
-//        return mAspectRatio;
-//    }
 
     @Override
     void setAutoFocus(boolean autoFocus) {
@@ -372,34 +336,28 @@ class Camera1 extends CameraViewImpl {
     }
 
     void adjustCameraParameters() {
-        Size size = chooseOptimalSize(mPreviewSizes);
-        Size pictureSize;
+//        Size size = chooseOptimalSize(mPreviewSizes);
+//        Size pictureSize;
+//
+//        if (size == null) {
+//            size = mPreviewSizes.get(0);
+//            pictureSize = mPictureSizes.get(0);
+//        } else {
+//            pictureSize = choosePicSize(mPictureSizes,
+//                    size.getWidth() * 1f / size.getHeight());
+//        }
+//
+//        if (pictureSize == null) {
+//            pictureSize = mPictureSizes.get(0);
+//        }
 
-        if (size == null) {
-            size = mPreviewSizes.get(0);
-            pictureSize = mPictureSizes.get(0);
-        } else {
-            pictureSize = choosePicSize(mPictureSizes,
-                    size.getWidth() * 1f / size.getHeight());
-        }
-
-        if (pictureSize == null) {
-            pictureSize = mPictureSizes.get(0);
-        }
-
-//        System.out.println("qglog screenWidth=" + Util.screenHeight() + " screenHeight=" + Util.screenWidth() +
-//                " screenScale=" + (Util.screenHeight() * 1f / Util.screenWidth()) +
-//                " pic size.width=" + pictureSize.getWidth() + " size.height=" + pictureSize.getHeight() + " scale=" + (pictureSize.getWidth() * 1f / pictureSize.getHeight()) +
-//                " pre size.width=" + size.getWidth() + " size.height=" + size.getHeight() + " scale=" + (size.getWidth() * 1f / size.getHeight()));
-
-
-        mCallback.onCameraSizeChange(size);
+//        mCallback.onCameraSizeChange(size);
 
         if (mShowingPreview) {
             mCamera.stopPreview();
         }
-        mCameraParameters.setPreviewSize(size.getWidth(), size.getHeight());
-        mCameraParameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
+//        mCameraParameters.setPreviewSize(size.getWidth(), size.getHeight());
+//        mCameraParameters.setPictureSize(pictureSize.getWidth(), pictureSize.getHeight());
         mCameraParameters.setRotation(calcCameraRotation(mDisplayOrientation));
         setAutoFocusInternal(mAutoFocus);
         setFlashInternal(mFlash);

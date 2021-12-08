@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.objectdetect.camera;
+package com.camera;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -26,8 +26,6 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.objectdetect.R;
-
 @TargetApi(14)
 public
 class TextureViewPreview extends PreviewImpl {
@@ -37,7 +35,7 @@ class TextureViewPreview extends PreviewImpl {
     private int mDisplayOrientation;
 
     TextureViewPreview(Context context, ViewGroup parent) {
-        final View view = View.inflate(context, R.layout.texture_view, parent);
+        final View view = View.inflate(context, R.layout.camera_texture_view, parent);
         mTextureView = view.findViewById(R.id.texture_view);
         mTextureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
 

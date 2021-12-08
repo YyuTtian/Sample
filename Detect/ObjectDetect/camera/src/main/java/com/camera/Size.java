@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.objectdetect.camera;
+package com.camera;
 
 
 import androidx.annotation.NonNull;

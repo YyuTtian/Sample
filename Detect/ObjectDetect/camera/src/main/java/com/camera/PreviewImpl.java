@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package com.objectdetect.camera;
+package com.camera;
 
 import android.graphics.Bitmap;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.View;
-
 
 /**
  * Encapsulates all the operations related to camera preview in a backward-compatible manner.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.objectdetect.camera;
+package com.camera;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -27,8 +27,6 @@ import android.widget.FrameLayout;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
-
-import com.objectdetect.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -122,8 +120,7 @@ public class CameraView extends FrameLayout {
 //            mImpl = new Camera2Api23(mCallbacks, preview, context);
 //        }
         // Attributes
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView, defStyleAttr,
-                R.style.Widget_CameraView);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView, defStyleAttr, R.style.Widget_CameraView);
         mAdjustViewBounds = a.getBoolean(R.styleable.CameraView_android_adjustViewBounds, false);
         setFacing(a.getInt(R.styleable.CameraView_facing, FACING_BACK));
 
@@ -138,7 +135,6 @@ public class CameraView extends FrameLayout {
             }
         };
     }
-
 
     @NonNull
     private PreviewImpl createPreviewImpl(Context context) {

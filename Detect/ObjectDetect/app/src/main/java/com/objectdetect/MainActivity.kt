@@ -3,14 +3,14 @@ package com.objectdetect
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.view.Window
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.camera.CameraView
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.objects.ObjectDetection
-import com.google.mlkit.vision.objects.ObjectDetector
 import com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions
-import com.objectdetect.camera.CameraView
 import com.objectdetect.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTransparentStatusBar()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -66,6 +67,17 @@ class MainActivity : AppCompatActivity() {
             }
         }.addOnFailureListener {
             println("check err " + it.message)
+        }
+    }
+
+    private fun setTransparentStatusBar() {
+        try {
+            val window = this.window
+            val decorView = window.decorView
+            val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            decorView.systemUiVisibility = option
+            window.statusBarColor = Color.TRANSPARENT
+        } catch (e: Exception) {
         }
     }
 }
