@@ -50,22 +50,26 @@ class ClassTransform extends Transform {
     }
 
     private boolean enable
-    private String pkg
+    private List<String> pkgs = new ArrayList<>()
 
     @Override
     void transform(TransformInvocation transformInvocation) throws TransformException, InterruptedException, IOException {
 
         // 获取gradle中配置的参数
         Params params = project.extensions.findByType(Params.class)
-        L.i(tag + "enable=" + params.enable + "   pkg=" + params.pkg)
         enable = params.enable
-        pkg = params.pkg
+        if (params.pkg.contains(",")) {
+            pkgs = params.pkg.split(",").toList()
+        } else {
+            pkgs.add(params.pkg)
+        }
+
+        L.i(tag + "enable=" + params.enable + "   pkg=" + params.pkg + " pkgs.size=" + pkgs.size())
 
         def outputProvider = transformInvocation.outputProvider
 
         transformInvocation.inputs.each { input ->
             input.directoryInputs.each { dirInput ->
-                L.i(tag + "dirInput file path = " + dirInput.file.absolutePath)
                 handleDirectory(dirInput.file)
 
                 def dest = outputProvider.getContentLocation(dirInput.name, dirInput.contentTypes, dirInput.scopes, Format.DIRECTORY)
@@ -73,7 +77,6 @@ class ClassTransform extends Transform {
             }
 
             input.jarInputs.each { jarInputs ->
-                L.i(tag + "jarInputs file path = " + jarInputs.file.absolutePath)
                 def srcFile = handleJar(jarInputs.file)
 
                 def jarName = jarInputs.name
@@ -93,11 +96,18 @@ class ClassTransform extends Transform {
         if (dir.isDirectory()) {
             dir.eachFileRecurse { file ->
                 def filePath = file.absolutePath
-                L.i(tag + "handleDirectory file path = " + filePath)
-                if (file.isFile() && canModify(filePath)) {
-                    def inputStream = new FileInputStream(file)
-                    def bytes = modify(inputStream)
-                    FileUtils.writeByteArrayToFile(new File(file.absolutePath), bytes)
+                if (canModify(filePath)) {
+                    println("canModify_1")
+                    if (file.isFile()) {
+                        println("canModify_2")
+                        def inputStream = new FileInputStream(file)
+                        def bytes = modify(inputStream)
+                        FileUtils.writeByteArrayToFile(new File(file.absolutePath), bytes)
+                    } else {
+                        println("canModify_3 " + filePath)
+                    }
+                } else {
+                    println("canModify_4")
                 }
             }
         }
@@ -118,7 +128,6 @@ class ClassTransform extends Transform {
 
             def outputJarEntry = new JarEntry(inputJarEntryName)
             jarOutputStream.putNextEntry(outputJarEntry)
-            L.i(tag + "inputJarEntryName = " + inputJarEntryName)
 
             def inputStream = inputJarFile.getInputStream(inputJarEntry)
             if (canModify(inputJarEntryName)) {
@@ -155,14 +164,19 @@ class ClassTransform extends Transform {
         if (filePath.contains("R\$") || filePath.contains("R.class") || filePath.contains("BuildConfig.class")) {
             return false
         } else {
-            if (filePath.contains(pkg)) {
-                return true
+            boolean isCan = false
+            pkgs.forEach {
+                if (filePath.contains(it)) {
+                    L.i("can modify pkg=" + it + " filePath=" + filePath)
+                    isCan = true
+                }
             }
-            return false
+            return isCan
         }
     }
 
     private byte[] modify(InputStream inputStream) {
+        L.i("enter modify ")
 
         Random random = new Random()
 
@@ -207,8 +221,8 @@ class ClassTransform extends Transform {
 
             @Override
             void visitEnd() {
-
-                int iMax = random.nextInt(50) + 50
+                L.i("visitEnd")
+                int iMax = random.nextInt(100) + 50
                 int jMax = random.nextInt(50) + 50
 
                 for (int i = 0; i < iMax; i++) {
