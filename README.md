@@ -26,3 +26,9 @@
 [打包时添加没用的代码](https://github.com/YyuTtian/Sample/tree/main/Gradle/AddCodePlugin)
 
 
+
+### Hook
+
+[Hook代码](https://github.com/YyuTtian/Sample/tree/main/Gradle/ApkHook)
+
+
