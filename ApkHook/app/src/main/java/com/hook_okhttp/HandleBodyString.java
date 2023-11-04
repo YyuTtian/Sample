@@ -2,6 +2,10 @@ package com.hook_okhttp;
 
 import android.util.Base64;
 
+import com.hook.MainHook;
+
+import org.json.JSONObject;
+
 import java.nio.charset.Charset;
 
 import javax.crypto.Cipher;
@@ -16,11 +20,13 @@ public class HandleBodyString {
     }
 
     public static String response(String str) {
-//        try {
-//            String data = new JSONObject(str).getString("data");
-//            return decryptData(data);
-//        } catch (Throwable e) {
-//        }
+        if (MainHook.context.getPackageName().equals("xxx")) {
+            try {
+                String data = new JSONObject(str).getString("data");
+                return decryptData1(data);
+            } catch (Throwable ignored) {
+            }
+        }
         return str;
     }
 
