@@ -28,7 +28,6 @@
 
 
 ### Hook
-
-[Hook代码](https://github.com/YyuTtian/Sample/tree/main/Gradle/ApkHook)
+[Hook代码](https://github.com/YyuTtian/Sample/tree/main/ApkHook)
 
 
