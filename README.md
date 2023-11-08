@@ -31,6 +31,6 @@
 [Hook代码](https://github.com/YyuTtian/Sample/tree/main/ApkHook)
 
 ### Web
-[Hook代码](https://github.com/YyuTtian/Sample/tree/main/web)
+[Web](https://github.com/YyuTtian/Sample/tree/main/web)
 
 
