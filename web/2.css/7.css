@@ -1,0 +1,67 @@
+.div1 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    /* 
+    属性值	     描述
+    default	    小白，默认
+    pointer	    小手
+    move	    移动
+    text	    文本
+    not-allowed	禁止
+    */
+    cursor: move;
+}
+
+/* 给表单添加 outline:0; 或者outline: none;样式后，就可以去掉默认的蓝色边框 */
+input[type=text] {
+    width: 100px;
+    height: 50px;
+    outline: none;
+}
+
+/* 防止拖拽文本域resize */
+textarea {
+    resize: none;
+}
+
+/* 
+使用场景：经常用于设置图片或者表单（行内块元素）和文字垂直对齐。
+官方解释：用于设置一个元素的垂直对齐方式，但是它只针对于行内元素或者行内块元素有效
+
+值	        描述
+baseline	默认，元素放置在父元素的基线上
+top         把元素的顶端与行中最高元素的顶端对齐（顶线对齐）
+middle	    把此元素放置在父元素的中部（中线对齐）
+bottom	    把元素的顶端与行中最低的元素的顶端对齐（底线对齐）
+*/
+#input1 {
+    /* 垂直居中 */
+    vertical-align: middle;
+}
+
+img {
+    /* 垂直居中 */
+    vertical-align: middle;
+}
+
+.singleLine {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.twoLine {
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* 弹性伸缩盒子模型显示 */
+    display: -webkit-box;
+    /* 限制在一个块元素显示的文本的行数 */
+    -webkit-line-clamp: 2;
+    /* 设置或检索伸缩盒对象的子元素的排列方式 */
+    -webkit-box-orient: vertical;
+}

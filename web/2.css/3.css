@@ -1,0 +1,63 @@
+div {
+    width: 300px;
+    height: 300px;
+
+    /* 
+    none:没有边框即忽略所有边框的宽度（默认值）
+    solid :边框为单实线（最为常用的）
+    dashed: 边框为虚线
+    dotted: 边框为点线 */
+    border: 2px solid #f00;
+
+    /* 可以只设置一边 */
+    /* border-top: 2px solid blue; */
+
+    /* 边框会影响div的宽高  不加box-sizing div的宽高会变成304*304 加了之后宽高还是300 */
+    box-sizing: border-box;
+
+
+    /* 上右下左  顺时针 */
+    /* margin: 20px; */
+
+    /* 可单独设置 */
+    /* margin-left: 20px; */
+
+    /* 上右下左  顺时针 */
+    padding: 20px;
+
+    /* 可单独设置 */
+    /* padding-left: 20px; */
+
+
+    /* 让块级元素水平居中 必须设置了宽度*/
+    /* 行内元素或者行内块元素水平居中给其父元素添加 text-align: center 即可 */
+    margin: 0 auto;
+
+    /* 圆角 */
+    border-radius: 50px;
+    /* 圆形 设置为宽高的一半 */
+    /* 圆角矩形 设置为高的一半 */
+    /* 单独设置一个角 */
+    /* border-top-left-radius: 30px; */
+
+
+    /* box-shadow: h-shadow v-shadow blur spread color inset;
+    
+    h-shadow	必需。水平阴影的位置，允许负值
+    v-shadow	必需。垂直阴影的位置，允许负值
+    blur	可选。模糊距离。
+    spread	可选，阴影的尺寸。
+    color	可选，阴影的颜色。
+    inset	可选，将外部阴影（outset）改为内部阴影
+    
+    */
+    box-shadow: 20px 20px;
+}
+
+table,
+td {
+    margin-top: 50px;
+    border: 1px solid #f00;
+    /* 单元格边框合并 */
+    border-collapse: collapse;
+}

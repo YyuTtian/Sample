@@ -1,0 +1,101 @@
+.child {
+    /* 浮动元素会脱离标准流 不再保留原先的位置 */
+    /* 如果多个盒子都设置了浮动，则它们会按照属性值一行内显示并且顶端对齐排列 */
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+/* 父div没有设置高度 由子元素撑开的时候 需要清除浮动 */
+.clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.div1 {
+    width: 500px;
+    height: 500px;
+    background-color: green;
+    position: relative;
+}
+
+span {
+    /*
+    static	    静态定位
+    relative	相对定位
+    absolute	绝对定位
+    fixed	    固定定位
+
+    top	    top: 80px	    顶端偏移量，定义元素相对于其父元素的上边线的距离
+    bottom	bottom: 80px	底部偏移量，定义元素相对于其父元素的下边线的距离
+    right	right: 80px	    右侧偏移量，定义元素相对于其父元素右边线的距离
+    left	left: 80px	    左侧偏移量，定义元素相对于其父元素左边线的距离
+
+
+
+    定位模式	          是否脱标	                移动位置	        是否常用
+        
+    static静态定位	        否	                   不能使用边偏移	       很少
+    relative相对定位    	否（占有位置）	        相对于自身位置移动	    常用
+    absolute绝对定位	    是（不占有位置）	    带有定位的父级	        常用
+    fixed固定定位	        是（不占有位置）	    浏览器可视区	        常用
+    sticky	               否（占有位置）	        浏览器可视区	       当前阶段少
+
+    */
+
+
+    /* 子绝父相 */
+    position: absolute;
+    top: 80px;
+    left: 80px;
+
+    /* 确定z轴  谁高谁显示在上面 */
+    z-index: 1;
+}
+
+.center {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    /* 绝对定位居中 */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    transform: translateY(-50%);
+}
+
+.show {
+    width: 100px;
+    height: 100px;
+    /* visible hidden隐藏了但是还占着位置 */
+    visibility: hidden;
+    /* block none隐藏了不占着位置 */
+    display: none;
+}
+
+
+.p {
+    width: 100px;
+    height: 100px;
+
+    /* 当子元素超过父元素大小的时候 */
+    /*
+    visible	不剪切内容也不添加滚动条
+    hidden	不显示超过对象尺寸的内容，超出的部分隐藏掉
+    scroll	不管超出内容否，总是显示滚动条
+    auto	超出自动显示滚动条，不超出不显示滚动条
+    */
+    overflow: auto;
+}
+
+.c {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}

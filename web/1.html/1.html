@@ -1,0 +1,112 @@
+<!-- 文档类型声明  当前页面采取的是 HTML5 版本来显示网页 -->
+<!DOCTYPE html>
+<!-- 根标签 lang="en" 语言是英语-->
+<html lang="en">
+  <!-- 文档的头部 -->
+  <head>
+    <!-- 字符集 -->
+    <meta charset="UTF-8" />
+    <!-- 移动网页用的 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 网页标题 -->
+    <title>Document</title>
+  </head>
+
+  <!-- 文档的主体 -->
+  <body>
+    <!-- h1最大 h6最小 -->
+    <h1 id="h1">标题标签1</h1>
+    <h2>标题标签2</h2>
+    <h3>标题标签3</h3>
+    <h4>标题标签4</h4>
+    <h5>标题标签5</h5>
+    <h6>标题标签6</h6>
+
+    <p>
+      段落标签 文本在一个段落这种会根据浏览器窗口的大小进行自动换行
+      段落和段落之间保有空隙
+    </p>
+
+    <!-- 换行标签 -->
+    <br />
+
+    <strong>加粗</strong>
+    <em>倾斜</em>
+    <del>删除</del>
+    <ins>下划线</ins>
+
+    <div>一行只能放一个</div>
+
+    <span>一行可以放多个</span>
+
+    <img
+      src="xxx.jpeg"
+      alt="当图片不能显示时候显示的文字"
+      title="鼠标放到图像上，显示的文字"
+    />
+
+    <br />
+
+    <!-- _blank为在新窗口中打开 -->
+    <!-- 如果 href 里面地址是一个文件或者压缩包，会下载这个文件 -->
+    <a href="https://www.baidu.com" target="_blank">超链接</a>
+    <!-- 点击链接，可以快速定位到页面中的某个位置  #h1是某个标签的id-->
+    <a href="#h1">跳到h1</a>
+    <!-- 空格 小于号 大于号 -->
+    &nbsp; &lt;&gt;
+
+    <br />
+    <br />
+    <br />
+
+    <table>
+      <tr>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <!-- colspan 列合并 -->
+        <td colspan="2">男</td>
+      </tr>
+      <tr>
+        <!-- rowspan 行合并 -->
+        <td rowspan="2">张三</td>
+        <td>男</td>
+        <td>18</td>
+      </tr>
+      <tr>
+        <td>男</td>
+        <td>18</td>
+      </tr>
+    </table>
+
+    <ul>
+      <li>无序列表1</li>
+      <li>无序列表2</li>
+      <li>无序列表3</li>
+      <li>无序列表4</li>
+      <li>无序列表5</li>
+      <li>无序列表6</li>
+    </ul>
+
+    <ol>
+      <li>有序列表1</li>
+      <li>有序列表2</li>
+      <li>有序列表3</li>
+      <li>有序列表4</li>
+      <li>有序列表5</li>
+      <li>有序列表6</li>
+    </ol>
+
+    <!-- 自定义列表 -->
+    <dl>
+      <dt>关注我们</dt>
+      <dd>新浪微博</dd>
+      <dd>联系我们</dd>
+    </dl>
+
+    
+  </body>
+</html>

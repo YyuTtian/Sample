@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 
+    action	url地址	用于指定接收并处理表单数据的服务器程序的url地址
+    method	get/post	用于设置表单数据的提交方式 其取值为get或post
+    name	名称	用于指定表单的名称，以区分同一个页面中的多个表单域
+     -->
+    <form action="xxxx" method="post" name="form1">
+      <!-- maxlength="100"最多输入多个字符 -->
+      账号:<input type="text" maxlength="100" />
+      <br />
+      <br />
+      密码:<input type="password" />
+      <br />
+      <br />
+      <!-- radia name一样才能互斥  checked默认选中-->
+      <label><input type="radio" name="sex" checked />男</label>
+      <label><input type="radio" name="sex" />女</label>
+      <br />
+      <br />
+      <!-- 单选框和复选框name必须一致，value可以不一样 -->
+      <!-- label包裹的标签 点击区域扩大到文字 -->
+      <label> <input type="checkbox" name="hobby" checked />爱好1</label>
+      <label> <input type="checkbox" name="hobby" />爱好2</label>
+      <label> <input type="checkbox" name="hobby" />爱好3</label>
+      <br />
+      <br />
+      <!-- multiple 选择多个文件 -->
+      <input type="file" multiple />
+      <br />
+      <br />
+      <!-- 下拉选择 selected默认选择-->
+      <select>
+        <option selected>选项1</option>
+        <option>选项2</option>
+        <option>选项3</option>
+        <option>选项4</option>
+        <option>选项5</option>
+      </select>
+      <br />
+      <br />
+      <textarea cols="100" rows="20"></textarea>
+      <br />
+      <br />
+
+      <input type="email" placeholder="必须是邮箱格式" />
+      <br />
+      <br />
+
+      <input type="tel" placeholder="必须是手机号码" />
+      <br />
+      <br />
+
+      <input type="number" placeholder="必须是数字" />
+      <br />
+      <br />
+
+      <input type="button" name="button" value="按钮" />
+    </form>
+  </body>
+</html>

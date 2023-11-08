@@ -1,0 +1,151 @@
+/* 属性选择器 */
+/* 
+选择符	         简介
+
+E[att]	        选择具有att属性的E元素
+E[att=“val”]	选择具有att属性且属性值等于val的E元素
+E[att^=“val”]	匹配具有att属性且值以val开头的E元素
+E[att$=“val”]	匹配具有att属性且值以val结尾的E元素
+E[att*=“val”]	匹配具有att属性且值中含有val的E元素
+*/
+input[type="text"] {
+    width: 100px;
+    height: 100px;
+    color: red;
+}
+
+/* 
+E:first-child	    匹配父元素中的第一个子元素E
+E:last-child	    匹配父元素中最后一个E元素
+E:nth-child(n)	    匹配父元素中的第n个子元素E  n从1开始
+        2n	        偶数（等价于even）
+        2n+1	    奇数（等价于odd）
+        5n	5 10…   (5的倍数)
+        n+5	        从第5个开始（包含第五个）到最后
+        -n+5	    前5个（包含第5个）
+
+E:first-of-type	    指定类型E的第一个
+E:last-of-type	    指定类型E的最后一个
+E:nth-of-type（n）	指定类型E的第n个
+*/
+.parent p:nth-child(1) {
+    color: red;
+}
+
+
+/* 
+before 和 after 创建一个元素，但是是属于行内元素
+    before和after 都是一个盒子，都作为父元素的孩子
+新创建的这个元素在文档树中是找不到的，所以我们称为伪元素
+before 和 after 必须有 content 属性
+*/
+.div1::before {
+    content: '我';
+}
+
+.div1::after {
+    content: '帅哥';
+}
+
+img {
+    width: 300px;
+    /* 图片变模糊 值越大越模糊 */
+    filter: blur(6px);
+}
+
+.father {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+}
+
+.son {
+    /* son的宽高永远比father的宽高少100px */
+    width: calc(100% - 100px);
+    height: calc(100% - 100px);
+    background-color: blue;
+}
+
+.anim {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    /* transition: 变化的属性 花费时间 运动曲线 延迟多少秒; */
+    /* linear 匀速*/
+    /* ease 逐渐慢下来*/
+    /* ease-in 加速*/
+    /* ease-out 减速*/
+    /* ease-in-out 先加速后减速*/
+    transition: all 0.5s ease-in-out;
+}
+
+.anim:hover {
+    width: 500px;
+    height: 200px;
+    background-color: black;
+}
+
+.div2 {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    transform: translateX(50%);
+}
+
+.div3 {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+
+    transition: all 3s;
+    /* 
+    修改旋转中心点
+
+    注意后面的参数x 和 y 用空格隔开
+    x y 默认转换的中心点是元素的中心点(50% 50%)
+    还可以给x y 设置 像素或者方位名词(top bottom left right center)
+    */
+    transform-origin: bottom right;
+}
+
+.div3:hover {
+    /* 正数顺时针  负数逆时针 */
+    transform: rotate(360deg);
+}
+
+.div4 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    transition: all 1s;
+}
+
+.div4:hover {
+    transform: scale(2, 2);
+}
+
+.divAll {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+
+    transition: all 3s;
+}
+
+.divAll:hover {
+    /* 移动放在最前面 */
+    transform: translateX(300px) rotate(360deg);
+}
+
+/* 
+转换transform 我们简单理解就是变形 有2D 和 3D 之分
+我们暂且学了三个 分别是 位移 旋转 和 缩放
+2D 移动 translate(x, y) 最大的优势是不影响其他盒子， 里面参数用%，是相对于自身宽度和高度来计算的
+可以分开写比如 translateX(x) 和 translateY(y)
+2D 旋转 rotate(度数) 可以实现旋转元素 度数的单位是deg
+2D 缩放 sacle(x,y) 里面参数是数字 不跟单位 可以是小数 最大的优势 不影响其他盒子
+设置转换中心点 transform-origin : x y; 参数可以百分比、像素或者是方位名词
+当我们进行综合写法，同时有位移和其他属性的时候，记得要将位移放到最前面
+*/

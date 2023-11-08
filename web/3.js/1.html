@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- <script src="1.js"></script> -->
+    <!-- <script src="2.js"></script> -->
+
+    <style>
+      #div1 {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+
+      #div1Child {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="div1">
+      <div id="div1Child">
+        <div id="div1ChildChild"></div>
+      </div>
+    </div>
+    <div id="div2" class="one"></div>
+
+    <a href="https://www.baidu.com" target="_blank">百度</a>
+
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <ul>
+      <li>第1个li</li>
+      <li>第2个li</li>
+      <li>第3个li</li>
+      <li>第4个li</li>
+      <li>第5个li</li>
+      <li>第6个li</li>
+      <li>第7个li</li>
+    </ul>
+
+    
+    <script>
+      let a = document.querySelector("a");
+      console.log(`a=${a}`);
+      a.onclick = function (e) {
+        // 阻止默认行为  超链接不能跳转了
+        e.preventDefault();
+      };
+
+      let div = document.querySelector("#div1");
+      let div1Child = document.querySelector("#div1Child");
+
+      div.addEventListener("click", function () {
+        console.log("father click");
+      });
+
+      div1Child.addEventListener("click", function (e) {
+        e.stopPropagation(); // 阻止事件继续向上冒泡 不然father click也会打印出来
+        console.log("child click");
+      });
+
+      // 事件委托  给父控件设置事件 用e.target获取到具体的事件源对象
+      let ul = document.querySelector("ul");
+      ul.addEventListener("click", function (e) {
+        for (let index = 0; index < ul.children.length; index++) {
+          ul.children[index].style.backgroundColor = "#00000000";
+        }
+        e.target.style.backgroundColor = "#ff0000";
+      });
+
+      document.addEventListener("keydown", function (e) {
+        let keyCode = e.keyCode;
+        console.log(`keyCode=${keyCode}`);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+/*
+以下有 6 个属性是对父元素设置的
+    flex-direction：设置主轴的方向
+        默认主轴方向就是 x 轴方向，水平向右
+        默认侧轴方向就是 y 轴方向，水平向下
+    justify-content：设置主轴上的子元素排列方式
+        flex-start	默认值从头部开始，如果主轴是x轴，则从左到右
+        flex-end	从尾部开始排列
+        center	在主轴居中对齐(如果主轴是 x 轴则水平居中)
+        space-around	平分剩余空间
+        space-between	先两边贴边，再平分剩余空间🔥
+    flex-wrap：设置子元素是否换行
+        nowrap	默认值，不换行  如果按照我们设置的盒子大小，一行只能装 3 个盒子，但是我们有 5 个盒子，那么 flex 布局默认会给我们塞上去，自动缩小盒子大小。
+        wrap	换行
+    align-content：设置侧轴上的子元素的排列方式（多行）
+        子项在侧轴上的排列方式 并且只能用于子项出现 换行 的情况（多行），在单行下是没有效果的。
+        flex-start	默认值在侧轴的头部开始排列
+        flex-end	在侧轴的尾部开始排列
+        center	在侧轴中间显示
+        space-around	子项在侧轴平分剩余空间
+        space-between	子项在侧轴先分布在两头，再平分剩余空间
+        stretch	设置子项元素高度平分父元素高度
+    align-items：设置侧轴上的子元素排列方式（单行）
+        控制子项在侧轴（默认是y轴）上的排列方式 在子项为单项（单行）的时候使用
+        flex-start	从上到下
+        flex-end	从下到上
+        center	挤在一起居中(垂直居中)
+        stretch	拉伸(默认值)
+    flex-flow：复合属性，相当于同时设置了 flex-direction 和 flex-wrap
+        是 flex-direction 和 flex-wrap 属性的复合属性
+*/
+.parent {
+    border: 1px solid red;
+    width: 300px;
+    height: 300px;
+    display: flex;
+
+    /* x轴 */
+    /* flex-direction: row; */
+
+    /* y轴 */
+    flex-direction: column;
+
+    justify-content: space-between;
+
+}
+
+
+/*
+    flex 子项目占的份数
+        定义子项目分配剩余空间，用flex来表示占多少份数。
+    align-self 控制子项自己在侧轴的排列方式
+        align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性。
+        默认值为 auto，表示继承父元素的 align-items 属性，如果没有父元素，则等同于 stretch。
+    order属性定义子项的排列顺序（前后顺序）
+        数值越小，排列越靠前，默认为0。
+
+*/
+.child {
+    background-color: black;
+    /* flex: 1; */
+}
