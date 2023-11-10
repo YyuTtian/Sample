@@ -1,0 +1,15 @@
+npm install webpack webpack-cli -D // -D开发环境使用
+
+在package.json中的scripts里面加上 "build": "webpack"
+
+webpack的默认入口是 src/index.js
+
+npm run build 执行构建命令
+
+npm install html-webpack-plugin -D // 自动生成html
+npm install css-loader style-loader -D // 把css打包进去
+npm install less less-loader -D // 把less打包进去
+
+npm i webpack-dev-server -D //  webpack服务器
+在package.json中的scripts里面加上 "server": "webpack serve"
+webpack.config.js里面加上 mode:'development', // 开发模式  去掉警告 

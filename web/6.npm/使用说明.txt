@@ -1,0 +1,15 @@
+npm init -y   // -y表示使用默认值
+
+npm install axios // 安装axios
+
+npm install webpack webpack-cli -D // -D开发环境使用
+
+package-lock.json的作用是锁定版本  防止三方库升级后自己的应用也跟着升级
+
+npm uninstall axios // 卸载axios
+
+npm install nodemon -g // -g global 全局的意思 nodemon代替node命令 js保存后自动执行 
+
+npm install nrm -g // -g global 全局的意思
+    nrm ls // 查看所有的地址
+    nrm use taobao // 用淘宝的仓库地址
