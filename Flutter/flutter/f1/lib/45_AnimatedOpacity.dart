@@ -18,6 +18,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const View1();
+  }
+}
+
+class View1 extends StatelessWidget {
+  const View1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      opacity: 1, // 修改opacity的值来实现透明度变化
+      duration: const Duration(seconds: 1),
+      child: Container(
+        color: Colors.red,
+      ),
+    );
   }
 }
