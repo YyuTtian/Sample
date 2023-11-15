@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -18,6 +19,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: CupertinoPicker(itemExtent: 50, onSelectedItemChanged: (value) {}, children: [
+        for (int i = 1; i < 50; i++) Center(child: Text("第$i个")),
+      ]),
+    );
   }
 }

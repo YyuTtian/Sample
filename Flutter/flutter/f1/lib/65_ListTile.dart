@@ -18,6 +18,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ListView.builder(
+        itemCount: 100,
+        itemBuilder: (context, index) {
+          return const ListTile(
+            title: Text("title"),
+            subtitle: Text("subTitle"),
+            leading: Icon(Icons.add),
+            trailing: Icon(Icons.arrow_forward_ios_rounded),
+          );
+        });
   }
 }

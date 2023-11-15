@@ -18,6 +18,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              action: SnackBarAction(label: "确定", onPressed: () {}),
+              content: Text("this is a snack bar")));
+        },
+        child: Text("snack bar"),
+      ),
+    );
   }
 }

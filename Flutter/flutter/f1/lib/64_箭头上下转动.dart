@@ -18,6 +18,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: ExpandIcon(
+        isExpanded: false, // true 箭头向上  false 箭头向下
+        onPressed: (bool) {
+          print("点击了$bool");
+        },
+      ),
+    );
   }
 }

@@ -18,6 +18,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: ElevatedButton(
+        onPressed: () async {
+          var time = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+          print("时间是$time");
+        },
+        child: Text("时间选择"),
+      ),
+    );
   }
 }

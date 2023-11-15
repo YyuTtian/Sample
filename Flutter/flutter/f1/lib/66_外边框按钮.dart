@@ -18,6 +18,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: Colors.blue, width: 2),
+          shape: StadiumBorder(),
+        ),
+        onPressed: () {},
+        child: const Text("按钮"),
+      ),
+    );
   }
 }
