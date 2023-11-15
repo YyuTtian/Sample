@@ -18,6 +18,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: SizedBox(
+          height: 100,
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Card(
+              color: Colors.red,
+              elevation: 2,
+              child: Container(),
+            ),
+          )),
+    );
   }
 }

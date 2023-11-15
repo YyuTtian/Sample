@@ -1,3 +1,4 @@
+import 'package:f1/generated/assets.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -18,6 +19,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: SizedBox(
+        width: 100,
+        height: 100,
+        child: CircleAvatar(
+          child: Image.asset(Assets.imagesIcLauncher),
+        ),
+      ),
+    );
   }
 }

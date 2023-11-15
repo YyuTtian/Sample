@@ -18,6 +18,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: ElevatedButton(
+        onPressed: () async {
+          var result = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(1990, 1, 1),
+            lastDate: DateTime(2099, 12, 31),
+          );
+
+          print("result=$result");
+        },
+        child: Text("选择日期"),
+      ),
+    );
   }
 }

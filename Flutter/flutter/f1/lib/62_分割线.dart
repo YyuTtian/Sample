@@ -18,6 +18,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Divider(
+      color: Colors.red,
+      // 粗细
+      thickness: 10,
+      // 前后留白
+      indent: 20,
+      endIndent: 20,
+    );
   }
 }
