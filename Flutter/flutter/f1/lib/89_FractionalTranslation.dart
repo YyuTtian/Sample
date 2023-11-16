@@ -18,28 +18,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Container(
+    return Center(
+      child: Container(
+        width: 100,
+        height: 100,
+        color: Colors.red,
+        child: FractionalTranslation(
+          // x方向移动父组件宽度的0.5倍
+          // y方向移动父组件高度的1倍
+          translation: (const Offset(0.5, 1)),
+          child: Container(
             width: 100,
             height: 100,
-            color: Colors.red,
+            color: Colors.blue,
           ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.red,
-          ),
-          Container(
-            width: 100,
-            height: 100,
-            color: Colors.red,
-          ),
-        ],
+        ),
       ),
     );
   }
