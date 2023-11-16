@@ -18,6 +18,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const RotatedBox(
+      // 1 顺时针 90
+      // 2 顺时针 180
+      // 3 顺时针 270
+      // 4 顺时针 360
+      // -1 逆时针 90
+      quarterTurns: 1,
+      child: Text("asdfsafsfdasf"),
+    );
   }
 }

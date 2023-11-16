@@ -18,6 +18,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: PhysicalModel(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.blue,
+        child: FlutterLogo(
+          size: 100,
+        ),
+      ),
+    );
   }
 }

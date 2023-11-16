@@ -92,8 +92,8 @@ class _ListItemStateState extends State<ListItemState> {
         SizedBox(
           height: 500,
           child: ListView.builder(
-            // scrollDirection: Axis.horizontal,
             // 列表方向
+            // scrollDirection: Axis.horizontal,
             itemExtent: 100,
             itemCount: 50,
             controller: controller,
