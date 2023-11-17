@@ -9,32 +9,18 @@ import io.flutter.embedding.engine.dart.DartExecutor
 object FlutterInit {
 
     fun init(context: Context) {
+        val routeList = ArrayList<String>()
+        routeList.add(Routes.page1)
+        routeList.add(Routes.page2)
+        routeList.add(Routes.page3)
 
-        /**
-         * navigationChannel.setInitialRoute(Routes.page1)
-        navigationChannel.setInitialRoute(Routes.page2)
-        navigationChannel.setInitialRoute(Routes.page3)
-         */
-
-        FlutterEngine(context).apply {
-            navigationChannel.setInitialRoute(Routes.page1)
-            dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-            FlutterEngineCache.getInstance().put(Routes.page1, this)
+        routeList.forEach { route ->
+            FlutterEngine(context).apply {
+                navigationChannel.setInitialRoute(route)
+                FlutterEngineCache.getInstance().put(route, this)
+                dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
+                plugins.add(BridgeImpl())
+            }
         }
-
-        FlutterEngine(context).apply {
-            navigationChannel.setInitialRoute(Routes.page2)
-            dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-            FlutterEngineCache.getInstance().put(Routes.page2, this)
-        }
-
-        FlutterEngine(context).apply {
-            navigationChannel.setInitialRoute(Routes.page3)
-            dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
-            FlutterEngineCache.getInstance().put(Routes.page3, this)
-        }
-
-        // 添加通信接口
-        FlutterEngine(context).plugins.add(BridgeImpl())
     }
 }

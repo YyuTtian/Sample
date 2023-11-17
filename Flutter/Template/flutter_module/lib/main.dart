@@ -7,37 +7,46 @@ import 'routes.dart';
 import 'ui/page/page1.dart';
 import 'ui/page/page3.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  print("enter main");
+  runApp(MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    print("myapp initState");
+    NativeCallFlutter.setup(BridgeImpl());
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
       routes: <String, WidgetBuilder>{
-        Routes.splash: (context) => const Splash(),
+        Routes.splash: (context) => const Init(),
         Routes.page1: (context) => const Page1(),
         Routes.page2: (context) => const Page2(),
         Routes.page3: (context) => const Page3(),
       },
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: const Text('Material App Bar'),
-      //   ),
-      //   body: const Splash(),
-      // ),
+      // home: Init(),
     );
   }
 }
 
-class Splash extends StatefulWidget {
-  const Splash({super.key});
+class Init extends StatefulWidget {
+  const Init({super.key});
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<Init> createState() => _InitState();
 }
 
-class _SplashState extends State<Splash> {
+class _InitState extends State<Init> {
   Future<void> getNativeResult() async {
     var flutterCallNative = FlutterCallNative();
     var result = await flutterCallNative.loadNativeData(1);

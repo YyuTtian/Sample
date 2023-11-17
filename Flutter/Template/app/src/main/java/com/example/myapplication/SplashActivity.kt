@@ -26,10 +26,8 @@ class SplashActivity : AppCompatActivity() {
 
         binding.tvPage3.setOnClickListener {
             startActivity(FlutterActivity.withCachedEngine(Routes.page3).build(this))
+            nativeCallFlutter()
         }
-
-
-        nativeCallFlutter()
     }
 
 
@@ -38,6 +36,10 @@ class SplashActivity : AppCompatActivity() {
             if (it.isSuccess) {
                 it.onSuccess { data ->
                     Log.i("flutter", "客户端从Flutter拿到的值 id=${data.id} name=${data.name}");
+                }
+            } else {
+                it.onFailure { e ->
+                    Log.i("flutter", "fail ${e.message} $e");
                 }
             }
         }
