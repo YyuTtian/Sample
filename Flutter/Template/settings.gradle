@@ -1,0 +1,8 @@
+rootProject.name = "Template"
+include ':app'
+
+setBinding(new Binding([gradle: this]))
+
+File file = new File(settingsDir, 'flutter_module/.android/include_flutter.groovy')
+println("path=" + file.absolutePath)
+evaluate(file)
