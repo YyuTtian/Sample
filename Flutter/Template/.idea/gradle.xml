@@ -12,6 +12,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/flutter_module/.android/Flutter" />
+            <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/path_provider_android-2.2.1/android" />
+            <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/shared_preferences_android-2.2.1/android" />
+            <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.flutter-io.cn/sqflite-2.2.8+4/android" />
           </set>
         </option>
       </GradleProjectSettings>

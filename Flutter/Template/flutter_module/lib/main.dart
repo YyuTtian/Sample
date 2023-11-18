@@ -1,7 +1,9 @@
+import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_module/bridge/bridge.dart';
 import 'package:flutter_module/bridge/bridgeImpl.dart';
 import 'package:flutter_module/ui/page/page2.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'routes.dart';
 import 'ui/page/page1.dart';
@@ -23,18 +25,24 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     print("myapp initState");
     NativeCallFlutter.setup(BridgeImpl());
+
+    LogUtil.init(isDebug: true);
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: <String, WidgetBuilder>{
-        Routes.splash: (context) => const Init(),
-        Routes.page1: (context) => const Page1(),
-        Routes.page2: (context) => const Page2(),
-        Routes.page3: (context) => const Page3(),
-      },
-      // home: Init(),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      child: MaterialApp(
+        routes: <String, WidgetBuilder>{
+          Routes.splash: (context) => const Init(),
+          Routes.page1: (context) => const Page1(),
+          Routes.page2: (context) => const Page2(),
+          Routes.page3: (context) => const Page3(),
+        },
+        // home: Init(),
+      ),
     );
   }
 }
