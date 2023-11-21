@@ -22,10 +22,9 @@ class HomePage extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              action: SnackBarAction(label: "确定", onPressed: () {}),
-              content: Text("this is a snack bar")));
+              action: SnackBarAction(label: "确定", onPressed: () {}), content: const Text("this is a snack bar")));
         },
-        child: Text("snack bar"),
+        child: const Text("snack bar"),
       ),
     );
   }

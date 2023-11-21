@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Button2(),
     );
   }
@@ -45,7 +45,7 @@ class Button2 extends StatelessWidget {
     // 没有长按事件
     return CupertinoButton.filled(
       borderRadius: BorderRadius.circular(20),
-      child: Text("有背景"),
+      child: const Text("有背景"),
       onPressed: () {},
     );
   }

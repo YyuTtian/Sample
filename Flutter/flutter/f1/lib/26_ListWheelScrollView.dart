@@ -41,7 +41,7 @@ class View1 extends StatelessWidget {
       // 设置未选中的透明度
       // overAndUnderCenterOpacity: 0.5,
 
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
 
       onSelectedItemChanged: (index) {
         print("index=$index");
@@ -66,7 +66,6 @@ class View2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListWheelScrollView(
-        itemExtent: 100, children: List.generate(5, (index) => Container(color: Colors.red)));
+    return ListWheelScrollView(itemExtent: 100, children: List.generate(5, (index) => Container(color: Colors.red)));
   }
 }

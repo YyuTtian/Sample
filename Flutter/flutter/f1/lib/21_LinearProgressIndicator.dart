@@ -47,7 +47,7 @@ class LoadingV extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RotatedBox(
+    return const RotatedBox(
       quarterTurns: -1,
       child: LinearProgressIndicator(
         value: 0.6,

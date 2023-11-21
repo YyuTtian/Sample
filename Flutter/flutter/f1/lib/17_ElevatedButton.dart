@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Button2(),
     );
   }
@@ -36,7 +36,7 @@ class Button1 extends StatelessWidget {
         onLongPress: () {
           print("长按了");
         },
-        child: Text("按钮"));
+        child: const Text("按钮"));
   }
 }
 
@@ -53,11 +53,11 @@ class Button2 extends StatelessWidget {
       //   print('长按了');
       // },
 
-      icon: Icon(Icons.star),
-      label: Text("按钮"),
+      icon: const Icon(Icons.star),
+      label: const Text("按钮"),
       style: ButtonStyle(
         enableFeedback: true,
-        padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+        padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
         backgroundColor: MaterialStateProperty.resolveWith((states) {
           // 根据status判断
           if (states.contains(MaterialState.pressed)) {

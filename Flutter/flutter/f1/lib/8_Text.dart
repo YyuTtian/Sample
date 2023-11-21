@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
         // 末尾 ...
         overflow: TextOverflow.ellipsis,
         // 字体缩放1.5倍
-        textScaleFactor: 1.5,
+        textScaler: TextScaler.linear(1.5),
       ),
     );
   }

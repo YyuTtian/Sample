@@ -110,8 +110,7 @@ class _ListItemStateState extends State<ListItemState> {
               // controller.jumpTo(0);
 
               // 动画过去
-              controller.animateTo(0,
-                  duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
+              controller.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
             },
             child: const Text("滑动到顶部"))
       ],
@@ -147,7 +146,7 @@ class _CalcCountState extends State<CalcCount> with AutomaticKeepAliveClientMixi
     );
   }
 
-  // item移除屏幕外 数据保留  _count不会被充值为0
+  // item移除屏幕外 数据保留  _count不会被重置为0
   @override
   bool get wantKeepAlive => _count != 0;
 }

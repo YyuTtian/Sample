@@ -21,8 +21,8 @@ class HomePage extends StatelessWidget {
     return Center(
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          side: BorderSide(color: Colors.blue, width: 2),
-          shape: StadiumBorder(),
+          side: const BorderSide(color: Colors.blue, width: 2),
+          shape: const StadiumBorder(),
         ),
         onPressed: () {},
         child: const Text("按钮"),

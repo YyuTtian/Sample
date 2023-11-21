@@ -35,7 +35,7 @@ class View1 extends StatelessWidget {
           onPressed: () {
             print("按钮点击事件");
           },
-          child: Text("禁用的按钮"),
+          child: const Text("禁用的按钮"),
         ),
       ),
     );

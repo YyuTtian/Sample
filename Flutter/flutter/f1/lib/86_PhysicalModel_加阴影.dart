@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
         elevation: 4,
         borderRadius: BorderRadius.circular(10),
         color: Colors.blue,
-        child: FlutterLogo(
+        child: const FlutterLogo(
           size: 100,
         ),
       ),

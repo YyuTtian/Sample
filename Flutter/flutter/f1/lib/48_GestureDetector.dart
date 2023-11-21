@@ -95,7 +95,7 @@ class _View1State extends State<View1> {
             // HitTestBehavior.translucent 可以传递
             // HitTestBehavior.deferToChild 随子组件 因为Contain透明  所以会传递下去
             behavior: HitTestBehavior.opaque,
-            child: Container(
+            child: const SizedBox(
               width: 200,
               height: 200,
             ),

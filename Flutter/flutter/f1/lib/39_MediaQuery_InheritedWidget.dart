@@ -104,8 +104,8 @@ class View2 extends StatelessWidget {
           textScaleFactor: 1.0,
           boldText: false,
         ),
-        child: Column(
-          children: const [
+        child: const Column(
+          children: [
             Text("sdfa"),
             Text("sdfaf"),
           ],

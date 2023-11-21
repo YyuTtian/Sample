@@ -178,8 +178,7 @@ class View5 extends StatelessWidget {
                             child: const Text("选项2"),
                           ),
                         ],
-                        cancelButton:
-                            CupertinoActionSheetAction(onPressed: () {}, child: const Text("取消")),
+                        cancelButton: CupertinoActionSheetAction(onPressed: () {}, child: const Text("取消")),
                       );
                     });
 
@@ -250,7 +249,7 @@ class AlertDialogiOS extends StatelessWidget {
 }
 
 class SimpleDialogAndroid extends StatelessWidget {
-  SimpleDialogAndroid({super.key});
+  const SimpleDialogAndroid({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -277,8 +276,20 @@ class SimpleDialogAndroid extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Expanded(flex: 1, child: TextButton(onPressed: () {}, child: const Text("取消"))),
-                    Expanded(flex: 1, child: TextButton(onPressed: () {}, child: const Text("确定"))),
+                    Expanded(
+                        flex: 1,
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: const Text("取消"))),
+                    Expanded(
+                        flex: 1,
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(true);
+                            },
+                            child: const Text("确定"))),
                   ],
                 )
               ],

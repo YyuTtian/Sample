@@ -29,16 +29,13 @@ class Rich extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-        text: TextSpan(
-            style: const TextStyle(fontSize: 28, color: Colors.black),
-            text: "111",
-            children: [
-          const TextSpan(style: TextStyle(fontSize: 50, color: Colors.red), text: "22"),
-          TextSpan(
-              style: const TextStyle(fontSize: 80, color: Colors.blue),
-              text: "333",
-              recognizer: TapGestureRecognizer()..onTap = () => {debugPrint("点击了333")}),
-        ]));
+        text: TextSpan(style: const TextStyle(fontSize: 28, color: Colors.black), text: "111", children: [
+      const TextSpan(style: TextStyle(fontSize: 50, color: Colors.red), text: "22"),
+      TextSpan(
+          style: const TextStyle(fontSize: 80, color: Colors.blue),
+          text: "333",
+          recognizer: TapGestureRecognizer()..onTap = () => {debugPrint("点击了333")}),
+    ]));
   }
 }
 
@@ -47,8 +44,7 @@ class TextRich extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-        TextSpan(text: "444", style: const TextStyle(fontSize: 28, color: Colors.black), children: [
+    return Text.rich(TextSpan(text: "444", style: const TextStyle(fontSize: 28, color: Colors.black), children: [
       const TextSpan(style: TextStyle(fontSize: 50, color: Colors.red), text: "555"),
       TextSpan(
         style: const TextStyle(fontSize: 80, color: Colors.blue),

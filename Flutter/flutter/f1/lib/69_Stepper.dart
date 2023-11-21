@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
           return Container();
         },
         steps: [
-          Step(title: Text("第一步"), content: Container()),
-          Step(title: Text("第二步"), content: Container()),
-          Step(title: Text("第三步"), content: Container()),
+          Step(title: const Text("第一步"), content: Container()),
+          Step(title: const Text("第二步"), content: Container()),
+          Step(title: const Text("第三步"), content: Container()),
         ],
       ),
     );

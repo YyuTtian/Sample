@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.max, // match_parent
         // mainAxisSize: MainAxisSize.min, // wrap_content
         mainAxisAlignment: MainAxisAlignment.spaceBetween, // 自动插入留白
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 100,

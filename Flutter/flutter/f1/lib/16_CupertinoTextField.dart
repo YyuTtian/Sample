@@ -22,13 +22,13 @@ class HomePage extends StatelessWidget {
     return Center(
       child: CupertinoTextField(
         placeholder: "提示文字",
-        placeholderStyle: TextStyle(color: Colors.grey),
+        placeholderStyle: const TextStyle(color: Colors.grey),
         clearButtonMode: OverlayVisibilityMode.editing,
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+          gradient: const LinearGradient(colors: [Colors.red, Colors.blue]),
           borderRadius: BorderRadius.circular(5),
         ),
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
       ),
     );
   }

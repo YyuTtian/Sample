@@ -2,6 +2,7 @@ import 'core/AppDatabase.dart';
 import 'core/Person.dart';
 
 class DBUtils {
+
   static void test() async {
     final database = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
 

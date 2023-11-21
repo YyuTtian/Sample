@@ -18,11 +18,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconTheme(
-        data: const IconThemeData(size: 50, color: Colors.red), // 一组icon都用相同的尺寸颜色
+    return const IconTheme(
+        data: IconThemeData(size: 50, color: Colors.red), // 一组icon都用相同的尺寸颜色
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: const [
+          children: [
             Icon(Icons.close),
             Icon(
               Icons.arrow_back, // 也可以自己单独设置

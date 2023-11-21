@@ -28,7 +28,7 @@ class TextField1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: TextStyle(color: Colors.blue),
+      style: const TextStyle(color: Colors.blue),
 
       // expands: true表示大小跟父容器一样
       // minLines: null,
@@ -47,7 +47,7 @@ class TextField1 extends StatelessWidget {
       // 光标
       cursorColor: Colors.grey,
       cursorWidth: 5,
-      cursorRadius: Radius.circular(5),
+      cursorRadius: const Radius.circular(5),
 
       // 输入用*显示  默认圆点
       obscureText: true,
@@ -55,28 +55,28 @@ class TextField1 extends StatelessWidget {
 
       decoration: InputDecoration(
           // 前面的图标
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           // 前缀图标
-          prefixIcon: Icon(Icons.lock),
+          prefixIcon: const Icon(Icons.lock),
           // 前缀文本
           prefixText: "https://",
 
           // 位置和counterText一样  可以是任意组件
-          counter: Text('任意组件'),
+          counter: const Text('任意组件'),
           // 计数器文本内容
           counterText: "0/100",
           // 后缀图标
-          suffixIcon: Icon(Icons.visibility),
+          suffixIcon: const Icon(Icons.visibility),
           // 后缀组件
           suffix: GestureDetector(
             onTap: () {
               print("点击了clear");
             },
-            child: Icon(Icons.clear),
+            child: const Icon(Icons.clear),
           ),
           labelText: "labelText",
           hintText: "提示文字",
-          hintStyle: TextStyle(color: Colors.red),
+          hintStyle: const TextStyle(color: Colors.red),
           helperText: 'helpText',
 
           // 自定义边框
@@ -84,27 +84,27 @@ class TextField1 extends StatelessWidget {
           //     borderRadius: BorderRadius.circular(10),
           //     borderSide: BorderSide(width: 8, color: Colors.red)),
 
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
 
           // 输入框的背景色
           filled: true,
           fillColor: Colors.red,
 
           // 内容距离边框的距离
-          contentPadding: EdgeInsets.all(10)),
+          contentPadding: const EdgeInsets.all(10)),
     );
   }
 }
 
 class TextField2 extends StatefulWidget {
-  TextField2({super.key});
+  const TextField2({super.key});
 
   @override
   State<TextField2> createState() => _TextField2State();
 }
 
 class _TextField2State extends State<TextField2> {
-  var _controller = TextEditingController();
+  final _controller = TextEditingController();
 
   @override
   void dispose() {
@@ -124,7 +124,7 @@ class _TextField2State extends State<TextField2> {
           height: 200,
           child: Center(
             child: GestureDetector(
-              child: Text("操作"),
+              child: const Text("操作"),
               onTap: () {
                 _controller.clear();
                 _controller.value.toString();

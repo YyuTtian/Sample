@@ -33,50 +33,28 @@ class View1 extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          Container(
-            height: 180,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 180,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 180,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 180,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 180,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            height: 180,
-            color: Colors.red,
-          ),
-          SizedBox(
-            height: 10,
-          ),
+          for (int i = 0; i < 100; i++) const Child(),
         ],
       ),
+    );
+  }
+}
+
+class Child extends StatelessWidget {
+  const Child({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: 180,
+          color: Colors.red,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+      ],
     );
   }
 }

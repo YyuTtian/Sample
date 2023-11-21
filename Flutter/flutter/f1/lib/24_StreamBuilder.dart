@@ -39,17 +39,17 @@ class Stream1 extends StatelessWidget {
       stream: time(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.none) {
-          return Text("没有数据流");
+          return const Text("没有数据流");
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Text("等待数据流");
+          return const Text("等待数据流");
         } else if (snapshot.connectionState == ConnectionState.active) {
           if (snapshot.hasError) {
-            return Text("数据流异常");
+            return const Text("数据流异常");
           } else {
             return Text("数据流活跃 数据=${snapshot.data}");
           }
         } else {
-          return Text("数据流关闭");
+          return const Text("数据流关闭");
         }
       },
     );
@@ -78,22 +78,22 @@ class Stream2 extends StatelessWidget {
               // control.addError("error");
               // control.done
             },
-            child: Text("按钮")),
+            child: const Text("按钮")),
         StreamBuilder(
             stream: control.stream,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.none) {
-                return Text("没有数据流");
+                return const Text("没有数据流");
               } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("等待数据流");
+                return const Text("等待数据流");
               } else if (snapshot.connectionState == ConnectionState.active) {
                 if (snapshot.hasError) {
-                  return Text("数据流异常");
+                  return const Text("数据流异常");
                 } else {
                   return Text("数据流活跃 数据=${snapshot.data}");
                 }
               } else {
-                return Text("数据流关闭");
+                return const Text("数据流关闭");
               }
             })
       ],

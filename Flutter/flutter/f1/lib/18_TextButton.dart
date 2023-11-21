@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
       child: TextButton(
         onPressed: () {},
         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue)),
-        child: Text(
+        child: const Text(
           "按钮",
           style: TextStyle(color: Colors.red),
         ),

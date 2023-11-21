@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
             size: 100,
           ),
           BackdropFilter(
-            // 100尺寸的模糊 50尺寸的不模糊
+            // 100尺寸的模糊 50尺寸的不模糊 用来凸显50尺寸的
             filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
             child: const FlutterLogo(
               size: 50,

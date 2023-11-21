@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return View3();
+    return const View3();
   }
 }
 
@@ -47,7 +47,7 @@ class View2 extends StatelessWidget {
         // 是否保持尺寸
         maintainSize: true,
         // 是否保持交互
-        maintainInteractivity: true,
+        maintainInteractivity: false,
         child: Text("Visibility"));
   }
 }

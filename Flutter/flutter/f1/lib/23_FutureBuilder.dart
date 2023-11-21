@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
     return Center(
       child: FutureBuilder(
           // 有默认值就不会出loading了
-          initialData: "默认值",
+          // initialData: "默认值",
           future: _loadData(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
   }
 
   Future<String> _loadData() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 3));
     return "hello";
   }
 }
