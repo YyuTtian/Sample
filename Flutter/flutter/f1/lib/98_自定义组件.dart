@@ -134,8 +134,8 @@ class Painter2 extends CustomPainter {
     canvas.drawRect(Offset.zero & size, gradientPaint);
 
     // 绘制文字
-    const textSpan = TextSpan(
-        text: "Do you wanna build a snowman?", style: TextStyle(fontSize: 30, color: Colors.white));
+    const textSpan =
+        TextSpan(text: "Do you wanna build a snowman?", style: TextStyle(fontSize: 30, color: Colors.white));
     TextPainter(text: textSpan, textDirection: TextDirection.ltr)
       ..layout(maxWidth: w * 0.5)
       ..paint(canvas, const Offset(50, 100));

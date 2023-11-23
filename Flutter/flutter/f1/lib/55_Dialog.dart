@@ -68,6 +68,7 @@ class View2 extends StatelessWidget {
           ElevatedButton(
               onPressed: () async {
                 var result = await showDialog(
+                    barrierDismissible: false,
                     context: context,
                     builder: (context) {
                       return SimpleDialogAndroid();
