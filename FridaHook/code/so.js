@@ -20,9 +20,9 @@ function hookSoOpen() {
             if (pathptr !== undefined && pathptr != null) {
                 let path = ptr(pathptr).readCString();
                 console.log("android_dlopen_ext " + path);
-                if (path != null && path.indexOf(soName) >= 0) {
-                    hookSoOpenNext(soName)
-                }
+                // if (path != null && path.indexOf(soName) >= 0) {
+                //     hookSoOpenNext(soName)
+                // }
             }
         }
     });

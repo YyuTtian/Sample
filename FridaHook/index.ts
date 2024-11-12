@@ -4,11 +4,22 @@ import { hookGson } from "./code/gson";
 import { getJavaUtil } from "./code/java_util";
 import { checkEncrypt } from "./code/encrypt";
 import { hookSoOpen } from "./code/so";
+import { passRoot } from "./code/pass/passRoot";
+import { passProxy } from "./code/pass/passProxy";
+import { passVpn } from "./code/pass/passVpn";
 
 console.log("开始运行");
 
+passRoot();
+passProxy();
+passVpn();
+
 // hook_pthread_create();
 // hookGson();
+// hookSoOpen()
+
+// checkEncrypt()
+
 
 Java.perform(function () {
   let javeUtil = getJavaUtil();
@@ -24,19 +35,18 @@ Java.perform(function () {
     };
 });
 
-// hookSoOpen()
 
-// checkEncrypt()
 
 // 主动调用的方法写在rpc.exports里面
 rpc.exports = {
   // 在控制台输入rpc.exports.test()来调用
-  checkHttpStack1() {
-    checkHttpStack();
-  },
   // test(log) {
   //   test(log);
   // },
+
+  checkHttpStack1() {
+    checkHttpStack();
+  },
 };
 
 // 附加方式 frida -UF -l hook.js -o log.txt
