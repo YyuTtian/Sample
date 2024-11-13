@@ -28,47 +28,56 @@ function hookSoOpen() {
     });
 }
 
-let soName = "libutils.so"
+function getModuleBaseAndSize(soName) {
 
-function hookSoOpenNext(soName) {
-    let call_constructors_addr = null
+    let addr_fopen = Module.findExportByName("libc.so", "fopen");
+    let addr_fgets = Module.findExportByName("libc.so", "fgets");
+    let addr_fclose = Module.findExportByName("libc.so", "fclose");
 
-    let m = Process.findModuleByName("linker64")
-    console.log(m)
-    let symnols = Process.getModuleByName("linker64").enumerateSymbols()
+    let fopen = new NativeFunction(addr_fopen, "pointer", ["pointer", "pointer"]);
+    let fgets = new NativeFunction(addr_fgets, "pointer", ["pointer", "int", "pointer"]);
+    let fclose = new NativeFunction(addr_fclose, "int", ["pointer"]);
 
+    let filename = Memory.allocUtf8String("/proc/" + Process.id + "/maps");
+    let open_mode = Memory.allocUtf8String("r");
+    let file = fopen(filename, open_mode);
 
-    for (let index = 0; index < symnols.length; index++) {
-        const element = symnols[index];
-        if (element.name.indexOf("call_constructors") >= 0) {
-            call_constructors_addr = element.address;
+    let buffer = Memory.alloc(1000)
+    let base, size
+    while (fgets(buffer, 999, file) != 0) {
+        let text = buffer.readCString()
+        if (text.indexOf(soName) != -1) {
+            if (!base) {
+                base = '0x' + text.substring(0, text.indexOf("-"))
+            }
+            let end = '0x'.text.substring(text.indexOf("-") + 1, text.indexOf(" "))
+            size = Number(end) - Number(base)
         }
     }
+    fclose(file)
+    return { base: base, size: size }
+}
 
-    console.log("call_constructors_addr=" + call_constructors_addr)
+// libxxx.so
+function dumpSo(soName) {
+    Java.perform(function () {
+        let module = getModuleBaseAndSize(soName)
 
-    let canReplace = true
-
-    Interceptor.attach(call_constructors_addr, {
-        onEnter: function () {
-            if (canReplace) {
-                canReplace = false
-                let soAddr = Module.findBaseAddress(soName)
-                console.log("soAddr=" + soAddr)
-
-                let funcAddr = soAddr.add(0x12f90)
-                Interceptor.replace(funcAddr, new NativeCallback(function () {
-                    console.log("替换函数" + funcAddr)
-                }, 'void', []))
-
-                // let funcAddr1 = soAddr.add(0x10975)
-                // Interceptor.replace(funcAddr1, new NativeCallback(function () {
-                //     console.log("替换函数" + funcAddr1)
-                // }, 'void', []))
-            }
+        let dstPath = getCtx().getExternalCacheDir() + "/" + soName + "_" + module.base + "_" + module.size + ".so"
+        let fileHandle = new File(dstPath, "wb")
+        
+        if (fileHandle && fileHandle != null) {
+            // 修改内存的权限
+            Memory.protect(ptr(module.base), module.size, "rwx")
+            // 读取内存中的so到buffer中
+            let buffer = ptr(module.base).readByteArray(module.size)
+            fileHandle.write(buffer)
+            fileHandle.flush()
+            fileHandle.close()
+            console.log("dumoSo " + soName + " path=" + dstPath)
         }
     })
 }
 
 
-export { hookSoOpen }
+export { hookSoOpen, dumpSo }

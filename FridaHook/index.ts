@@ -7,18 +7,24 @@ import { hookSoOpen } from "./code/so";
 import { passRoot } from "./code/pass/passRoot";
 import { passProxy } from "./code/pass/passProxy";
 import { passVpn } from "./code/pass/passVpn";
+import { passFrida } from "./code/pass/passFrida";
+import { hookFileRead } from "./code/file";
 
 console.log("开始运行");
 
 passRoot();
 passProxy();
 passVpn();
+passFrida()
 
 // hook_pthread_create();
 // hookGson();
 // hookSoOpen()
 
 // checkEncrypt()
+
+hookFileRead()
+
 
 
 Java.perform(function () {

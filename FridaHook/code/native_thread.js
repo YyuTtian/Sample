@@ -7,12 +7,12 @@ function hook_pthread_create() {
             let module = Process.findModuleByAddress(funcAddr)
             console.log(module.name + "开启子线程 函数地址是" + funcAddr.sub(module.base))
 
-            if (module.name.indexOf("libmsaoaidsec.so") > -1) {
-                Interceptor.replace(funcAddr, new NativeCallback(function () {
-                    console.log("替换函数" + funcAddr)
-                }, 'void', []))
+            // if (module.name.indexOf("libmsaoaidsec.so") > -1) {
+            //     Interceptor.replace(funcAddr, new NativeCallback(function () {
+            //         console.log("替换函数" + funcAddr)
+            //     }, 'void', []))
 
-            }
+            // }
         }
     })
 }
