@@ -8,10 +8,12 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -110,5 +112,45 @@ public class JavaUtil {
 
     public static void parseOkHttp(Object response, String classJson, boolean isDebug) {
         OkParse.parse(response, classJson, isDebug);
+    }
+
+    // (long ssl, NativeSsl ssl_holder, FileDescriptor fd,SSLHandshakeCallbacks shc, byte[] b, int off, int len, int writeTimeoutMillis
+    public static void sslWrite(Context context, long ssl, Object sslHolder, Object fd, Object sslCallback, byte[] bytes, int offset, int length, int writeTimeoutMs) {
+        writeSslFile(true, context, ssl, sslHolder, fd, sslCallback, bytes, offset, length, writeTimeoutMs);
+    }
+
+    // long ssl, NativeSsl ssl_holder, FileDescriptor fd, SSLHandshakeCallbacks shc, byte[] b, int off, int len, int readTimeoutMillis
+    public static void sslRead(Context context, long ssl, Object sslHolder, Object fd, Object sslCallback, byte[] bytes, int offset, int length, int readTimeoutMs) {
+        writeSslFile(false, context, ssl, sslHolder, fd, sslCallback, bytes, offset, length, readTimeoutMs);
+    }
+
+    private static void writeSslFile(boolean isWrite, Context context, long ssl, Object sslHolder, Object fd, Object sslCallback, byte[] bytes, int offset, int length, int readTimeoutMs) {
+        File folder = new File(context.getExternalCacheDir(), "ssl");
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        String sessionId = "";
+        try {
+            Class clazz = Class.forName("org.conscrypt.NativeSsl");
+            Method getSessionIdMethod = clazz.getDeclaredMethod("getSessionId");
+            getSessionIdMethod.setAccessible(true);
+            Object sessionIdResult = getSessionIdMethod.invoke(sslHolder);
+            sessionId = "@sessionId_" + byteArray2Base64((byte[]) sessionIdResult);
+        } catch (Throwable throwable) {
+        }
+
+        File writeFolder = new File(folder, "write");
+        if (!writeFolder.exists()) writeFolder.mkdirs();
+
+        File readFolder = new File(folder, "read");
+        if (!readFolder.exists()) readFolder.mkdirs();
+
+        String fileName = (isWrite ? "write" : "read") + "@ssl_" + ssl + sessionId + "@sslHolder_" + sslHolder.hashCode() + "@fd_" + fd.hashCode() + "@sslCallback_" + sslCallback.hashCode() + "@ts_" + System.currentTimeMillis();
+        File file = new File(isWrite ? writeFolder : readFolder, fileName);
+        try {
+            FileUtils.writeByteArrayToFile(file, bytes, offset, length);
+        } catch (Throwable ignored) {
+        }
     }
 }

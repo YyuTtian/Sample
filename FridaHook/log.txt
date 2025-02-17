@@ -1,16 +1,2 @@
 开始运行
-Error: java.lang.ClassNotFoundException: Didn't find class "com.qgl.JavaUtil" on path: DexPathList[[zip file "/data/local/tmp/dex"],nativeLibraryDirectories=[/system/lib64, /vendor/lib64, /system/product/lib64]]
-    at <anonymous> (frida/node_modules/frida-java-bridge/lib/env.js:124)
-    at <anonymous> (frida/node_modules/frida-java-bridge/lib/class-factory.js:443)
-    at value (frida/node_modules/frida-java-bridge/lib/class-factory.js:812)
-    at _make (frida/node_modules/frida-java-bridge/lib/class-factory.js:112)
-    at use (frida/node_modules/frida-java-bridge/lib/class-factory.js:63)
-    at use (frida/node_modules/frida-java-bridge/index.js:246)
-    at getJavaUtil (code/java_util.js:10)
-    at <anonymous> (index.ts:14)
-    at <anonymous> (frida/node_modules/frida-java-bridge/lib/vm.js:16)
-    at _performPendingVmOps (frida/node_modules/frida-java-bridge/index.js:238)
-    at <anonymous> (frida/node_modules/frida-java-bridge/index.js:230)
-    at apply (native)
-    at ne (frida/node_modules/frida-java-bridge/lib/class-factory.js:613)
-    at <anonymous> (frida/node_modules/frida-java-bridge/lib/class-factory.js:592)
+strstrAddr=0xe55cbdc5

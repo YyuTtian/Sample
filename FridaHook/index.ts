@@ -8,13 +8,13 @@ import { passRoot } from "./code/pass/passRoot";
 import { passProxy } from "./code/pass/passProxy";
 import { passVpn } from "./code/pass/passVpn";
 import { passFrida } from "./code/pass/passFrida";
-import { hookFileRead } from "./code/file";
+import { hooklibc } from "./code/cfile";
 
 console.log("开始运行");
 
-passRoot();
-passProxy();
-passVpn();
+// passRoot();
+// passProxy();
+// passVpn();
 passFrida()
 
 // hook_pthread_create();
@@ -23,25 +23,7 @@ passFrida()
 
 // checkEncrypt()
 
-hookFileRead()
-
-
-
-Java.perform(function () {
-  let javeUtil = getJavaUtil();
-  let Log = Java.use("android.util.Log");
-  Log["d"].overload("java.lang.String", "java.lang.String").implementation =
-    function (tag: any, log: any) {
-      let result = this["d"](tag, log);
-      if (log.indexOf("DramaDetailActivity 开始播放 mCurItem = ") != -1) {
-        console.log(log);
-        javeUtil.parseDramaLog(log);
-      }
-      return result;
-    };
-});
-
-
+// hooklibc()
 
 // 主动调用的方法写在rpc.exports里面
 rpc.exports = {
