@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TbUserMapper">
+
+    <select id="filterUser" resultType="com.example.demo.vo.UserVO">
+        select tb_user.username,tb_user.password,tb_dept.dept_name,tb_hobby.hobby_name from tb_user
+        left join tb_dept on tb_user.dept_id = tb_dept.id
+        left join tb_hobby on tb_user.hobby_id = tb_hobby.id
+        <where>
+            <if test="userName != null and userName != ''">tb_user.username like concat('%', #{userName}, '%')</if>
+            <if test="deptName != null and deptName != ''">and tb_dept.dept_name like concat('%', #{deptName}, '%')</if>
+            <if test="hobbyName != null and hobbyName != ''">and tb_hobby.hobby_name like concat('%', #{hobbyName},
+                '%')
+            </if>
+        </where>
+        order by tb_user.id
+    </select>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.DishMapper">
+    <!--新增菜品，注意：获取主键属性值的时候，如果sql写在xml中 那么useGeneratedKeys="true" keyProperty="id"必须写在xml中-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into dish
+        values (null, #{name}, #{categoryId}, #{price}, #{image}, #{description},
+                #{status}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser})
+    </insert>
+    <!--修改菜品-->
+    <update id="update">
+        update dish
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <!--批量删除菜品-->
+    <delete id="deleteBatch">
+        delete from dish where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!--条件列表查询-->
+    <select id="list" resultType="com.sky.vo.DishVO">
+        select t1.*, t2.name categoryName from dish t1, category t2
+        where t1.category_id = t2.id
+        <if test="name != null">
+            and t1.name like concat('%', #{name}, '%')
+        </if>
+        <if test="status != null">
+            and t1.status = #{status}
+        </if>
+        <if test="categoryId != null">
+            and t1.category_id = #{categoryId}
+        </if>
+        order by t1.create_time desc
+    </select>
+
+    <!--根据id查询菜品-->
+    <select id="selectById" resultType="com.sky.entity.Dish">
+        select * from dish where id = #{id}
+    </select>
+
+    <!--根据分类id和菜品名称查询菜品列表-->
+    <select id="getByCategoryId" resultType="com.sky.entity.Dish">
+        select * from dish
+        <where>
+            <if test="categoryId != null">
+                category_id = #{categoryId}
+            </if>
+            <if test="name != null">
+                and name like concat('%', #{name}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--用户端：根据分类id查询菜品列表-->
+    <select id="listBy" resultType="com.sky.entity.Dish">
+        select * from dish
+        <where>
+            <if test="categoryId != null">
+                category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <!--根据状态统计菜品数量-->
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from dish
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+</mapper>

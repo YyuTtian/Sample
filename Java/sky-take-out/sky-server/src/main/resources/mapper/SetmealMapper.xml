@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.SetmealMapper">
+    <!--更新套餐-->
+    <update id="update">
+        update setmeal
+        <set>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="image != null">
+                image       = #{image},
+            </if>
+            <if test="name != null">
+                name        = #{name},
+            </if>
+            <if test="price != null">
+                price       = #{price},
+            </if>
+            <if test="status != null">
+                status      = #{status},
+            </if>
+            <if test="updateTime != null">
+                update_time      = #{updateTime},
+            </if>
+            <if test="updateUser != null">
+                update_user      = #{updateUser}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--分页条件查询-->
+    <select id="pageQuery" resultType="com.sky.vo.SetmealVO">
+        select
+        s.*,c.name categoryName
+        from
+        setmeal s
+        left join
+        category c
+        on
+        s.category_id = c.id
+        <where>
+            <if test="name != null">
+                and s.name like concat('%',#{name},'%')
+            </if>
+            <if test="status != null">
+                and s.status = #{status}
+            </if>
+            <if test="categoryId != null">
+                and s.category_id = #{categoryId}
+            </if>
+        </where>
+        order by s.create_time desc
+    </select>
+
+    <!--结果集映射 autoMapping设置为true,代表完成结果的自动映射，并自动忽略大小写，驼峰命名规则-->
+    <resultMap id="setmealAndDishMap" type="com.sky.vo.SetmealVO" autoMapping="true">
+        <result column="id" property="id"/> <!--主键映射-->
+        <!-- 结果映射 -->
+        <!--
+            collection：配置一对多规则，将查询出来的每条数据，封装到SetmealDish对象中，然后将对象添加到list集合setmealDishes中
+                属性property：表示要将结果封装到对象的哪个属性中
+                属性ofType：指定要将结果封装到什么对象中
+            collection封装规则：
+                result：配置表字段与属性字段映射关系，coloum表示表字段，property表示属性字段
+        -->
+        <collection property="setmealDishes" ofType="SetmealDish">
+            <result column="sd_id" property="id"/>
+            <result column="setmeal_id" property="setmealId"/>
+            <result column="dish_id" property="dishId"/>
+            <result column="sd_name" property="name"/>
+            <result column="sd_price" property="price"/>
+            <result column="copies" property="copies"/>
+        </collection>
+    </resultMap>
+    <!--查询套餐及套餐菜品关系数据-->
+    <select id="getByIdWithDish" parameterType="long" resultMap="setmealAndDishMap">
+        select a.*,
+               b.id    sd_id,
+               b.setmeal_id,
+               b.dish_id,
+               b.name  sd_name,
+               b.price sd_price,
+               b.copies
+        from setmeal a
+                 left join
+             setmeal_dish b
+             on
+                 a.id = b.setmeal_id
+        where a.id = #{id}
+    </select>
+
+    <select id="list" parameterType="Setmeal" resultType="Setmeal">
+        select * from setmeal
+        <where>
+            <if test="name != null">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <!--根据状态统计套餐数量-->
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from setmeal
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+</mapper>
